@@ -13,11 +13,12 @@
     <tbody>
     <% if @stores.any? %>
       <% @stores.each do |store| %>
-      <tr><a href="/stores/<%=store.id()%>">
+      <tr>
         <td><%=store.name()%></td>
         <td><%=store.city()%></td>
         <td><%=store.state()%></td>
-      </a></tr>
+        <td><a href="/stores/<%=store.id()%>">View</a></td>
+      </tr>
         <% end %>
       <% else %>
         <p>No stores have been added</p>
@@ -26,8 +27,8 @@
   </table>
 
 
-<br>
-<br>
 <hr>
+<br>
+<br>
 <a class="waves-effect waves-light btn red" href="/seed">Seed Database</a>
 <a class="waves-effect waves-light btn red" href="/clear">Clear Database</a>
