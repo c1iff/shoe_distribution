@@ -1,0 +1,73 @@
+<div class="section">
+<h4 class="blue-text">Current Shoes:</h4>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th data-field="">Name</th>
+      <th data-field="">Brand</th>
+      <th data-field="">Style</th>
+      <th data-field="">Price</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% if @shoes.any? %>
+    <% @shoes.each do |shoe| %>
+    <tr>
+      <td><%=shoe.name()%></td>
+      <td><%=shoe.brand()%></td>
+      <td><%=shoe.style()%></td>
+      <td>$<%=shoe.cost()%></td>
+      <td><a href="/shoes/<%=shoe.id()%>">View</a></td>
+    </tr>
+      <% end %>
+    <% else %>
+      <p>No stores have been added</p>
+    <% end %>
+  </tbody>
+</table><br>
+
+<% if @show %>
+<div class="row">
+  <form class="col s12" action="/shoes" method="post">
+
+
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="shoe-name" name="shoe-name" type="text" class="validate">
+        <label for="shoe-name">Name</label>
+      </div>
+
+      <div class="input-field col s6">
+        <input id="shoe-brand" name="shoe-brand" type="text" class="validate">
+        <label for="shoe-brand">Brand</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="shoe-style" name="shoe-style" type="text" class="validate">
+        <label for="shoe-style">Style</label>
+      </div>
+
+      <div class="input-field col s6">
+        <input id="shoe-price" name="shoe-price" type="text" class="validate">
+        <label for="shoe-price">Price</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="shoe-description" name="shoe-description" type="text" class="validate">
+        <label for="shoe-description">Description</label>
+      </div>
+    </div>
+      <button class="waves-effect waves-light btn blue" type="submit">Add Shoe</button>
+      <a class="waves-effect waves-light btn blue" href="/shoes">Cancel</a>
+    </form>
+  </div>
+<% else %>
+  <a class="waves-effect waves-light btn blue" href="/shoes/new">Add Shoe</a>
+<% end %>

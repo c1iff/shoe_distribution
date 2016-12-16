@@ -2,16 +2,19 @@ require("bundler/setup")
 Bundler.require(:default)
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
-
 get('/') do
-  @stores = Store.all()
   erb(:index)
+end
+
+get('/stores') do
+  @stores = Store.all()
+  erb(:stores)
 end
 
 get('/stores/new') do
   @stores = Store.all()
   @show = ''
-  erb(:index)
+  erb(:stores)
 end
 
 get('/stores/:id') do
@@ -52,10 +55,35 @@ post('/shoes/:id') do
 end
 
 
+get('/shoes') do
+  @shoes = Shoe.all()
+  erb(:shoes)
+end
 
+get('/shoes/new') do
+  @shoes = Shoe.all()
+  @show = ''
+  erb(:shoes)
+end
 
+post('/shoes') do
+  @shoes = Shoe.all()
+  name = params['shoe-name']
+  brand = params['shoe-brand']
+  style = params['shoe-style']
+  price = params['shoe-price']
+  description = params['shoe-description']
+  if Shoe.create(:name => name, :brand => brand, :description => description, :style => style, :cost => price)
+    redirect("/shoes")
+  else
+    erb(:error)
+  end
+end
 
-
+get('/shoes/:id') do
+  @shoe = Shoe.find(params['id'])
+  erb(:shoe)
+end
 
 
 

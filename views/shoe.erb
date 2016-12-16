@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col s4">
+
+<div class="card">
+  <div class="section">
+
+  <h4><%=@shoe.name()%></h4>
+  <p><%=@shoe.brand()%>
+     <%=@shoe.style()%>
+     <%=@shoe.cost()%></p>
+   </div>
+  </div>
+</div>
+
+</div>
+  <div class="divider"></div><br>
+  <p><%=@shoe.description()%></p>
+
+</div>
+
+  <div class="divider"></div><br>
+  <% if @shoe.stores().any? %>
+    <% @shoe.stores.each do |store| %>
+    <tr>
+      <td><%=store.name()%></td>
+      <td><%=store.city()%></td>
+      <td><%=store.state()%></td>
+      <td><a href="/stores/<%=store.id()%>">View</a></td>
+    </tr>
+      <% end %>
+    <% else %>
+      <p>This shoe is not currently available in any store</p>
+    <% end %>
