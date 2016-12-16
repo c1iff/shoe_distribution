@@ -8,6 +8,10 @@ class Shoe < ActiveRecord::Base
 private
 
   def upcase_first_letter
-    self.name=(self.name().capitalize())
+    capitalized_name = []
+    self.name().split(' ').each() do |each|
+      capitalized_name.push(each.capitalize())
+    end
+    self.name=(capitalized_name.join(' '))
   end
 end

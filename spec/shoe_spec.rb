@@ -14,7 +14,15 @@ describe Shoe do
       expect(@new_store.shoes()).to(eq([@new_shoe, @new_shoe_2]))
     end
   end
+
   it { should have_and_belong_to_many(:stores) }
 
   it { should validate_presence_of(:name) }
+
+  describe('#upcase_first_letter') do
+    it ('should upcase the first letter of name on save') do
+      test_store = Shoe.create(:name => 'dima sneaker', :brand => 'Chrome', :description => 'Slip-on sneaks for the city.', :style => 'Sneaker', :cost => 80)
+        expect(test_store.name()).to(eq('Dima Sneaker'))
+    end
+  end
 end
