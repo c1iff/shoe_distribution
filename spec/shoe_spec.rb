@@ -14,4 +14,7 @@ describe Shoe do
       expect(@new_store.shoes()).to(eq([@new_shoe, @new_shoe_2]))
     end
   end
+  it { should have_and_belong_to_many(:stores) }
+
+  it { should validate_presence_of(:name) }
 end
