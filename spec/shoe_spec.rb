@@ -21,8 +21,9 @@ describe Shoe do
 
   describe('#upcase_first_letter') do
     it ('should upcase the first letter of name on save') do
-      test_store = Shoe.create(:name => 'dima sneaker', :brand => 'Chrome', :description => 'Slip-on sneaks for the city.', :style => 'Sneaker', :cost => 80)
-        expect(test_store.name()).to(eq('Dima Sneaker'))
+      test_shoe = Shoe.create(:name => 'dima sneaker', :brand => 'chrome industries', :description => 'Slip-on sneaks for the city.', :style => 'Sneaker', :cost => 80)
+        expect(test_shoe.name()).to(eq('Dima Sneaker'))
+        expect(test_shoe.brand()).to(eq('Chrome Industries'))
     end
   end
 end
