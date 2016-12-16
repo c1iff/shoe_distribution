@@ -1,30 +1,21 @@
-<div class="row">
-  <div class="col s4">
-    <div class="card">
-      <div class="card-content">
-        <span class="card-title"><%=@shoe.name()%></span>
-        <p><%=@shoe.brand()%>
-           <%=@shoe.style()%>
-           <%=@shoe.cost()%></p>
-      </div>
-    </div>
-  </div>
+<div class="section">
+  <h4><%=@shoe.name()%></h4>
+  <p><b>Brand:</b> <%=@shoe.brand()%></p>
+    <p><b>Style:</b> <%=@shoe.style()%></p>
+     <p><b>Price:</b> $<%=@shoe.cost()%></p>
 </div>
-  <div class="divider"></div><br>
-  <p><%=@shoe.description()%></p>
 
+<div class="divider"></div><br>
+<h5>Description:</h5>
+<p><%=@shoe.description()%></p>
 
-
-  <div class="divider"></div><br>
-  <% if @shoe.stores().any? %>
-    <p>
-      This shoe is currently available in these stores:
-    </p>
-    <% @shoe.stores.each do |store| %>
-
-
-
+<div class="divider"></div><br>
+<% if @shoe.stores().any? %>
   <div class="row">
+    <p>
+      This shoe is available in these stores:
+    </p>
+  <% @shoe.stores.each do |store| %>
     <div class="col s4">
       <div class="card">
         <div class="card-content">
@@ -39,11 +30,7 @@
       </div>
     </div>
   </div>
-
-
-
-
-      <% end %>
-    <% else %>
-      <p>This shoe is not currently available in any store</p>
-    <% end %>
+  <% end %>
+<% else %>
+  <p>This shoe is not currently available in any store</p>
+<% end %>

@@ -7,7 +7,7 @@
   <div class="divider"></div><br>
 
 
-<h5>Shoes currnty in-stock at <%=@store.name()%>:</h5>
+<h5>Shoes currenty available at <%=@store.name()%>:</h5>
 <table>
   <thead>
     <tr>
@@ -26,7 +26,7 @@
       <td><%=shoe.brand()%></td>
       <td><%=shoe.style()%></td>
       <td>$<%=shoe.cost()%></td>
-      <td><a href="/stores/<%=shoe.id()%>">View</a></td>
+      <td><a href="/shoes/<%=shoe.id()%>">View</a></td>
     </tr>
       <% end %>
     <% else %>
@@ -37,42 +37,29 @@
 
 
 <% if @show %>
+<h5>Select shoes below to add to this store</h5>
   <div class="row">
     <form class="col s12" action="/shoes/<%=@store.id()%>" method="post">
-
-
       <div class="row">
-        <div class="input-field col s6">
-          <input id="shoe-name" name="shoe-name" type="text" class="validate">
-          <label for="shoe-name">Name</label>
-        </div>
 
-        <div class="input-field col s6">
-          <input id="shoe-brand" name="shoe-brand" type="text" class="validate">
-          <label for="shoe-brand">Brand</label>
-        </div>
+      <% if @shoes.any? %>
+        <% @shoes.each do |shoe| %>
+        <div class="col s4">
+
+        <p>
+          <input name="shoes[]" type="checkbox" id="<%= shoe.name %>" value="<%= shoe.id() %>" />
+          <label for="<%= shoe.name %>"> <%= shoe.name %></label>
+        </p>
+
       </div>
+      <% end %>
+    </div>
+      <% else %>
+      <p>No shoes have been added</p>
+      <% end %>
 
-      <div class="row">
-        <div class="input-field col s6">
-          <input id="shoe-style" name="shoe-style" type="text" class="validate">
-          <label for="shoe-style">Style</label>
-        </div>
-
-        <div class="input-field col s6">
-          <input id="shoe-price" name="shoe-price" type="text" class="validate">
-          <label for="shoe-price">Price</label>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="shoe-description" name="shoe-description" type="text" class="validate">
-          <label for="shoe-description">Description</label>
-        </div>
-      </div>
-
-      <button class="waves-effect waves-light btn blue" type="submit">Add Shoe</button>
+      <button class="waves-effect waves-light btn blue" type="submit">Add Shoes</button>
+      <a class="waves-effect waves-light btn red" href="/stores/<%=@store.id()%>">Cancel</a>
     </form>
   </div>
 <% else %>

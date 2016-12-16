@@ -1,31 +1,28 @@
 <div class="section">
 <h4 class="blue-text">Current Stores:</h4>
 </div>
-<table>
-  <thead>
-    <tr>
-      <th data-field="">Store Name</th>
-      <th data-field="">City</th>
-      <th data-field="">State</th>
-      <th data-field=""></th>
-    </tr>
-  </thead>
 
-  <tbody>
   <% if @stores.any? %>
+    <div class="row">
     <% @stores.each do |store| %>
-    <tr>
-      <td><%=store.name()%></td>
-      <td><%=store.city()%></td>
-      <td><%=store.state()%></td>
-      <td><a href="/stores/<%=store.id()%>">View</a></td>
-    </tr>
+      <div class="col s4">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title"><%=store.name()%></span>
+            <p><%=store.street()%>
+               <%=store.city()%>,
+               <%=store.state()%></p>
+          </div>
+          <div class="card-action">
+            <a href="/stores/<%=store.id()%>">View Store</a>
+          </div>
+        </div>
+      </div>
       <% end %>
+    </div>
     <% else %>
       <p>No stores have been added</p>
     <% end %>
-  </tbody>
-</table><br>
 
 <% if @show %>
   <div class="row">
@@ -55,7 +52,7 @@
         </div>
       </div>
       <button class="waves-effect waves-light btn blue" type="submit">Add Store</button>
-      <a class="waves-effect waves-light btn blue" href="/stores">Cancel</a>
+      <a class="waves-effect waves-light btn red" href="/stores">Cancel</a>
     </form>
   </div>
 <% else %>

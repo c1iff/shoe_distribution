@@ -28,7 +28,7 @@ post('/stores') do
   city = params['store-city']
   state = params['store-state']
   if Store.create(:name => name, :city => city, :street => street, :state => state)
-    redirect('/')
+    redirect('/stores')
   else
     erb(:error)
   end
@@ -36,18 +36,15 @@ end
 
 get('/shoes/:id/new') do
   @store = Store.find(params['id'])
+  @shoes = Shoe.all()
   @show = ''
   erb(:store)
 end
 
 post('/shoes/:id') do
   @store = Store.find(params['id'])
-  name = params['shoe-name']
-  brand = params['shoe-brand']
-  style = params['shoe-style']
-  price = params['shoe-price']
-  description = params['shoe-description']
-  if @store.shoes.create(:name => name, :brand => brand, :description => description, :style => style, :cost => price)
+  shoes = params['shoes']
+  if @store.update(:shoe_ids => shoes)
     redirect("/stores/#{@store.id()}")
   else
     erb(:error)

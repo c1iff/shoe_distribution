@@ -20,7 +20,7 @@
       <td><%=shoe.brand()%></td>
       <td><%=shoe.style()%></td>
       <td>$<%=shoe.cost()%></td>
-      <td><a href="/shoes/<%=shoe.id()%>">View</a></td>
+      <td><a href="/shoes/<%=shoe.id()%>" class="blue-text">View</a></td>
     </tr>
       <% end %>
     <% else %>
@@ -65,7 +65,7 @@
       </div>
     </div>
       <button class="waves-effect waves-light btn blue" type="submit">Add Shoe</button>
-      <a class="waves-effect waves-light btn blue" href="/shoes">Cancel</a>
+      <a class="waves-effect waves-light btn red" href="/shoes">Cancel</a>
     </form>
   </div>
 <% else %>
