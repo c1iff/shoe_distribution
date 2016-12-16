@@ -1,34 +1,68 @@
-<h1>Current Stores</h1>
+<h3>Current Stores</h3>
 
-  <table class="highlight">
-    <thead>
-      <tr>
-          <th data-field="">Store Name</th>
-          <th data-field="">City</th>
-          <th data-field="">State</th>
-          <th data-field=""></th>
-      </tr>
-    </thead>
+<table>
+  <thead>
+    <tr>
+      <th data-field="">Store Name</th>
+      <th data-field="">City</th>
+      <th data-field="">State</th>
+      <th data-field=""></th>
+    </tr>
+  </thead>
 
-    <tbody>
-    <% if @stores.any? %>
-      <% @stores.each do |store| %>
-      <tr>
-        <td><%=store.name()%></td>
-        <td><%=store.city()%></td>
-        <td><%=store.state()%></td>
-        <td><a href="/stores/<%=store.id()%>">View</a></td>
-      </tr>
-        <% end %>
-      <% else %>
-        <p>No stores have been added</p>
+  <tbody>
+  <% if @stores.any? %>
+    <% @stores.each do |store| %>
+    <tr>
+      <td><%=store.name()%></td>
+      <td><%=store.city()%></td>
+      <td><%=store.state()%></td>
+      <td><a class="waves-effect waves-teal btn-flat" href="/stores/<%=store.id()%>">View</a></td>
+    </tr>
       <% end %>
-    </tbody>
-  </table>
+    <% else %>
+      <p>No stores have been added</p>
+    <% end %>
+  </tbody>
+</table><br>
+
+<% if @show %>
+  <div class="row">
+    <form class="col s12" action="/stores" method="post">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="store-name" name="store-name" type="text" class="validate">
+          <label for="store-name">Store Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="store-street" name="store-street" type="text" class="validate">
+          <label for="store-street">Street Address</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="store-city" name="store-city" type="text" class="validate">
+          <label for="store-city">City</label>
+        </div>
+
+        <div class="input-field col s6">
+          <input id="store-state" name="store-state" type="text" class="validate">
+          <label for="store-state">State</label>
+        </div>
+      </div>
+      <button class="waves-effect waves-light btn blue" type="submit">Add Store</button>
+    </form>
+  </div>
+<% else %>
+  <a class="waves-effect waves-light btn blue" href="/stores/new">Add Store</a>
+<% end %>
 
 
+<br>
+<br>
 <hr>
-<br>
-<br>
 <a class="waves-effect waves-light btn red" href="/seed">Seed Database</a>
 <a class="waves-effect waves-light btn red" href="/clear">Clear Database</a>

@@ -1,21 +1,20 @@
-<h1>Store</h1>
+<div class="section">
+  <h4><%=@store.name()%></h4>
+  <p><%=@store.street()%>
+    <%=@store.city()%>
+    <%=@store.state()%></p>
+  </div>
+  <div class="divider"></div><br>
 
 
-  <h3><%=@store.name()%></h3>
-  <p><%=@store.street()%></p>
-  <p><%=@store.city()%></p>
-  <p><%=@store.state()%></p>
-
-
-
-
+<h5>Shoes currnty in-stock at <%=@store.name()%>:</h5>
 <table>
   <thead>
     <tr>
-      <th data-field="">Store Name</th>
-      <th data-field="">City</th>
-      <th data-field="">State</th>
-      <th data-field=""></th>
+      <th data-field="">Name</th>
+      <th data-field="">Brand</th>
+      <th data-field="">Style</th>
+      <th data-field="">Price</th>
     </tr>
   </thead>
 
@@ -25,12 +24,57 @@
     <tr>
       <td><%=shoe.name()%></td>
       <td><%=shoe.brand()%></td>
-      <td><%=shoe.description()%></td>
-      <td><a class="waves-effect waves-teal btn-flat" href="/stores/<%=shoe.id()%>">View</a></td>
+      <td><%=shoe.style()%></td>
+      <td>$<%=shoe.cost()%></td>
+      <td class="right"><a class="waves-effect waves-teal btn-flat" href="/stores/<%=shoe.id()%>">View</a></td>
     </tr>
       <% end %>
     <% else %>
       <p>No shoes have been added</p>
     <% end %>
   </tbody>
-</table>
+</table><br><br>
+
+
+<% if @show %>
+  <div class="row">
+    <form class="col s12" action="/shoes/<%=@store.id()%>" method="post">
+
+
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="shoe-name" name="shoe-name" type="text" class="validate">
+          <label for="shoe-name">Name</label>
+        </div>
+
+        <div class="input-field col s6">
+          <input id="shoe-brand" name="shoe-brand" type="text" class="validate">
+          <label for="shoe-brand">Brand</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="shoe-style" name="shoe-style" type="text" class="validate">
+          <label for="shoe-style">Style</label>
+        </div>
+
+        <div class="input-field col s6">
+          <input id="shoe-price" name="shoe-price" type="text" class="validate">
+          <label for="shoe-price">Price</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="shoe-description" name="shoe-description" type="text" class="validate">
+          <label for="shoe-description">Description</label>
+        </div>
+      </div>
+
+      <button class="waves-effect waves-light btn blue" type="submit">Add Shoe</button>
+    </form>
+  </div>
+<% else %>
+  <a class="waves-effect waves-light btn blue" href="/shoes/<%=@store.id()%>/new">Add Shoes</a>
+<% end %>
