@@ -1,9 +1,21 @@
-<div class="section">
-  <h4><%=@store.name()%></h4>
-  <p><%=@store.street()%>
-    <%=@store.city()%>
-    <%=@store.state()%></p>
+<div class="row">
+  <div class="col s8">
+    <div class="section">
+      <h4><%=@store.name()%></h4>
+      <p><%=@store.street()%>
+        <%=@store.city()%>
+        <%=@store.state()%></p>
+      </div>
   </div>
+  <div class="section">
+    <br>
+  <form action="/stores" method="post" class="right">
+    <input type="hidden" name="_method" value="delete">
+    <input type="hidden" name="store-id" value=" <%= @store.id() %>">
+    <button class="waves-effect waves-light btn red" type="submit">Delete Store</button>
+  </form>
+</div>
+</div>
   <div class="divider"></div><br>
 
 

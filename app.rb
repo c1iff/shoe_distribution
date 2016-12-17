@@ -34,6 +34,12 @@ post('/stores') do
   end
 end
 
+delete('/stores') do
+  current_store = Store.find(params['store-id'])
+  current_store.destroy()
+  redirect('/stores')
+end
+
 get('/shoes/:id/new') do
   @store = Store.find(params['id'])
   @shoes = Shoe.all()
