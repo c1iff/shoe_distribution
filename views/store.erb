@@ -77,3 +77,39 @@
 <% else %>
   <a class="waves-effect waves-light btn blue" href="/shoes/<%=@store.id()%>/new">Add Shoes</a>
 <% end %>
+
+<% if @show_form %>
+  <div class="row">
+    <form class="col s12" action="/stores/ <%= @store.id() %>" method="post">
+      <input type="hidden" name="_method" value="patch">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="store-name" name="store-name" type="text" class="validate">
+          <label for="store-name">Store Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="store-street" name="store-street" type="text" class="validate">
+          <label for="store-street">Street Address</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="store-city" name="store-city" type="text" class="validate">
+          <label for="store-city">City</label>
+        </div>
+
+        <div class="input-field col s6">
+          <input id="store-state" name="store-state" type="text" class="validate">
+          <label for="store-state">State</label>
+        </div>
+      </div>
+      <button class="waves-effect waves-light btn amber" type="submit">Update</button>
+      <a class="waves-effect waves-light btn red" href="/stores">Cancel</a>
+    </form>
+  </div>
+<% else %>
+  <a class="waves-effect waves-light btn amber" href="/stores/ <%= @store.id() %>/update">Update Info</a>
+<% end %>

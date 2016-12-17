@@ -1,8 +1,20 @@
-<div class="section">
-  <h4><%=@shoe.name()%></h4>
-  <p><b>Brand:</b> <%=@shoe.brand()%></p>
-    <p><b>Style:</b> <%=@shoe.style()%></p>
-     <p><b>Price:</b> $<%=@shoe.cost()%></p>
+<div class="row">
+  <div class="col s8">
+    <div class="section">
+      <h4><%=@shoe.name()%></h4>
+      <p><b>Brand:</b> <%=@shoe.brand()%></p>
+        <p><b>Style:</b> <%=@shoe.style()%></p>
+         <p><b>Price:</b> $<%=@shoe.cost()%></p>
+      </div>
+  </div>
+  <div class="section">
+    <br>
+  <form action="/shoes" method="post" class="right">
+    <input type="hidden" name="_method" value="delete">
+    <input type="hidden" name="shoe-id" value=" <%= @shoe.id() %>">
+    <button class="waves-effect waves-light btn red" type="submit">Delete Shoe</button>
+  </form>
+</div>
 </div>
 
 <div class="divider"></div><br>

@@ -28,7 +28,7 @@ post('/stores') do
   city = params['store-city']
   state = params['store-state']
   if Store.create(:name => name, :city => city, :street => street, :state => state)
-    redirect('/stores')
+    redirect('/stores/')
   else
     erb(:error)
   end
@@ -45,6 +45,25 @@ get('/shoes/:id/new') do
   @shoes = Shoe.all()
   @show = ''
   erb(:store)
+end
+
+get('/stores/:id/update') do
+  @store = Store.find(params['id'])
+  @show_form = ''
+  erb(:store)
+end
+
+patch('/stores/:id') do
+  @store = Store.find(params['id'])
+  name = params['store-name']
+  street = params['store-street']
+  city = params['store-city']
+  state = params['store-state']
+  if @store.update(:name => name, :city => city, :street => street, :state => state)
+    redirect("/stores/#{@store.id()}")
+  else
+    erb(:error)
+  end
 end
 
 post('/shoes/:id') do
@@ -88,8 +107,17 @@ get('/shoes/:id') do
   erb(:shoe)
 end
 
+delete('/shoes') do
+  current_shoe = Shoe.find(params['shoe-id'])
+  current_shoe.destroy()
+  redirect("/shoes")
+end
 
 
+get('/stores/') do
+  @stores = Store.all()
+  erb(:stores)
+end
 #********************************database shortcuts***********************
 
 get('/seed') do
